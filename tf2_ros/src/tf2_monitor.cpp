@@ -153,10 +153,10 @@ public:
     }
 
     subscriber_tf_ = node_->create_subscription<tf2_msgs::msg::TFMessage>(
-      "/tf", tf2_ros::DynamicListenerQoS(),
+      "/tf_zed", tf2_ros::DynamicListenerQoS(),
       std::bind(&TFMonitor::callback, this, std::placeholders::_1));
     subscriber_tf_message_ = node_->create_subscription<tf2_msgs::msg::TFMessage>(
-      "/tf_static", tf2_ros::StaticListenerQoS(),
+      "/tf_static_zed", tf2_ros::StaticListenerQoS(),
       std::bind(&TFMonitor::callback, this, std::placeholders::_1));
   }
 

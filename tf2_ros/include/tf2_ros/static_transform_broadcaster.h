@@ -91,7 +91,7 @@ public:
     } ())
   {
     publisher_ = rclcpp::create_publisher<tf2_msgs::msg::TFMessage>(
-      node_parameters, node_topics, "/tf_static", qos, options);
+      node_parameters, node_topics, "/tf_static_zed", qos, options);
   }
 
   /** \brief Send a TransformStamped message

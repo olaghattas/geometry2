@@ -59,7 +59,7 @@ class StaticTransformBroadcaster:
                 durability=DurabilityPolicy.TRANSIENT_LOCAL,
                 history=HistoryPolicy.KEEP_LAST,
                 )
-        self.pub_tf = node.create_publisher(TFMessage, "/tf_static", qos)
+        self.pub_tf = node.create_publisher(TFMessage, "/tf_static_zed", qos)
 
         self.net_message = TFMessage()
         self._child_frame_ids = set()
