@@ -39,6 +39,7 @@ import tf2_ros
 from tf2_ros.buffer import Buffer
 from tf2_msgs.msg import TFMessage
 from threading import Thread
+import os
 
 
 class TransformListener:
@@ -83,9 +84,9 @@ class TransformListener:
         # from another callback in the same group.
         self.group = ReentrantCallbackGroup()
         self.tf_sub = node.create_subscription(
-            TFMessage, '/tf_zed', self.callback, qos, callback_group=self.group)
+            TFMessage, "/tf_" + os.getenv("tf_topic"), self.callback, qos, callback_group=self.group)
         self.tf_static_sub = node.create_subscription(
-            TFMessage, '/tf_static_zed', self.static_callback, static_qos, callback_group=self.group)
+            TFMessage, "/tf_static_" + os.getenv("tf_topic"), self.static_callback, static_qos, callback_group=self.group)
 
         if spin_thread:
             self.executor = SingleThreadedExecutor()

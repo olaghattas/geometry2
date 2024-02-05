@@ -39,6 +39,7 @@ from rclpy.qos import HistoryPolicy
 from rclpy.qos import QoSProfile
 from tf2_msgs.msg import TFMessage
 from geometry_msgs.msg import TransformStamped
+import os
 
 
 class StaticTransformBroadcaster:
@@ -59,7 +60,8 @@ class StaticTransformBroadcaster:
                 durability=DurabilityPolicy.TRANSIENT_LOCAL,
                 history=HistoryPolicy.KEEP_LAST,
                 )
-        self.pub_tf = node.create_publisher(TFMessage, "/tf_static_zed", qos)
+
+        self.pub_tf = node.create_publisher(TFMessage, "/tf_static_" + os.getenv("tf_topic"), qos)
 
         self.net_message = TFMessage()
         self._child_frame_ids = set()

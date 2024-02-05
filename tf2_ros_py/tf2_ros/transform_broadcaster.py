@@ -37,6 +37,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from tf2_msgs.msg import TFMessage
 from geometry_msgs.msg import TransformStamped
+import os
 
 
 class TransformBroadcaster:
@@ -58,7 +59,7 @@ class TransformBroadcaster:
         """
         if qos is None:
             qos = QoSProfile(depth=100)
-        self.pub_tf = node.create_publisher(TFMessage, "/tf_zed", qos)
+        self.pub_tf = node.create_publisher(TFMessage, "/tf_" + os.getenv("tf_topic"), qos)
 
     def sendTransform(
         self,
