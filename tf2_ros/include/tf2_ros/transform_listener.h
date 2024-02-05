@@ -186,11 +186,11 @@ private:
       tf_static_options.callback_group = callback_group_;
 
       message_subscription_tf_ = rclcpp::create_subscription<tf2_msgs::msg::TFMessage>(
-        node_parameters, node_topics, "/tf_" + std::getenv("tf_topic"), qos, std::move(cb), tf_options);
+        node_parameters, node_topics, "/tf_" + std::string(std::getenv("tf_topic")), qos, std::move(cb), tf_options);
       message_subscription_tf_static_ = rclcpp::create_subscription<tf2_msgs::msg::TFMessage>(
         node_parameters,
         node_topics,
-        "/tf_static_" + std::getenv("tf_topic"),
+        "/tf_static_" + std::string(std::getenv("tf_topic")),
         static_qos,
         std::move(static_cb),
         tf_static_options);
@@ -203,11 +203,11 @@ private:
       buffer_.setUsingDedicatedThread(true);
     } else {
       message_subscription_tf_ = rclcpp::create_subscription<tf2_msgs::msg::TFMessage>(
-        node_parameters, node_topics, "/tf_" + std::getenv("tf_topic"), qos, std::move(cb), options);
+        node_parameters, node_topics, "/tf_" + std::string(std::getenv("tf_topic")), qos, std::move(cb), options);
       message_subscription_tf_static_ = rclcpp::create_subscription<tf2_msgs::msg::TFMessage>(
         node_parameters,
         node_topics,
-        "/tf_static_" + std::getenv("tf_topic"),
+        "/tf_static_" + std::string(std::getenv("tf_topic")),
         static_qos,
         std::move(static_cb),
         static_options);

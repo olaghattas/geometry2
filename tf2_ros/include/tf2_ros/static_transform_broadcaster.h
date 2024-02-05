@@ -91,7 +91,7 @@ public:
     } ())
   {
     publisher_ = rclcpp::create_publisher<tf2_msgs::msg::TFMessage>(
-      node_parameters, node_topics, "/tf_static_" + std::getenv("tf_topic"), qos, options);
+      node_parameters, node_topics, "/tf_static_" + std::string(std::getenv("tf_topic")), qos, options);
   }
 
   /** \brief Send a TransformStamped message
